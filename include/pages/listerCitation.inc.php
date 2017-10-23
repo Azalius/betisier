@@ -16,12 +16,13 @@
 		foreach ($citations as $citation){?>
 			<?php $NumPersonne = $citation->getPerNum();
 						$NumCitation = $citation->getCitNum();
-						$personne = $perManager->getPers($NumPersonne)->getNom();
+						$nomPersonne = $perManager->getPers($NumPersonne)->getNom();
+						$prePersonne = $perManager->getPers($NumPersonne)->getPre();
 						$note = $noteManager->getMoyNotes($NumCitation);
 			 ?>
-	<tr><td><?php echo $personne?>
+	<tr><td><?php echo $prePersonne." ".$nomPersonne?>
 	</td><td><?php echo $citation -> getCitLib();?>
-	</td><td><?php echo $citation -> getDate();?>
+	</td><td><?php echo getFrenchDate($citation -> getDate());?>
 	</td><td><?php echo $note;?>
 	</td></tr>
 	<?php }?>
