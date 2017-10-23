@@ -7,7 +7,7 @@ class CitationsManager{
 
 	public function getAllCitations() {
 		$listeCitations = array();
-		$sql = 'SELECT per_num,cit_libelle,cit_date,cit_valide FROM citation
+		$sql = 'SELECT per_num,cit_libelle,cit_date,cit_valide,cit_num FROM citation
             WHERE cit_valide=1 AND cit_date_valide IS NOT NULL
             ORDER BY cit_num';
 

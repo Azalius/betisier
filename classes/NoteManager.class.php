@@ -21,17 +21,14 @@ class NoteManager{
 	}
 
   public function getMoyNotes($citnum){
-    $MoyNotes = array();
-    $sql = 'SELECT MOY(vot_valeur) FROM vote
+    PRINT_R($citnum);
+    $sql = 'SELECT AVG(vot_valeur) as moyenne FROM vote
             WHERE cit_num = '.$citnum;
-
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-
-		$requete -> fetch(PDO::FETCH_OBJ)
-
-		$requete->closeCursor();
-		return $MoyNotes;
+    $requete = $this->db->prepare($sql);
+    $requete->execute();
+    $moyNotes = $requete->fetch(PDO::FETCH_OBJ);
+    $requete->closeCursor();
+    return $moyNotes->moyenne;
   }
 }
 ?>

@@ -4,7 +4,7 @@ class Personne{
   private $nom;
   private $pre;
   private $mail;
-  private $tel
+  private $tel;
 
   public function __construct($valeurs = array()) {
     	if(!empty($valeurs)){

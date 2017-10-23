@@ -1,5 +1,5 @@
 <?php
-class Citation {
+class Note {
 	private $per_num;
 	private $vot_valeur;
 	private $cit_num;
