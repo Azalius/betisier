@@ -8,7 +8,7 @@ class PersonneManager{
 
 	public function getAllPers() {
 		$listePers = array();
-		$sql = 'SELECT per_num, per_nom, per_prenom FROM personne';
+		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne';
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		while($pers = $requete->fetch(PDO::FETCH_OBJ)){
@@ -32,7 +32,8 @@ class PersonneManager{
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);
 		$requete->closeCursor();
-		return new Personne($pers);
+		$aret = new Personne($pers);
+		return $aret;
 	}
 }
 ?>

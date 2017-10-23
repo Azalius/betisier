@@ -4,6 +4,11 @@
 	$persMan = new PersonneManager($pdo);
  ?>
 
+	<?php
+		if (!empty($_GET["id"])){
+			echo("<h2>Detail</h2>");
+		}
+	?>
 
 	<h1>Liste des personnes : </h1>
 	<table>
@@ -21,9 +26,10 @@
 				$allPers = $persMan->getAllPers();
 				foreach ($allPers as $pers){
 					echo '<tr><td>'.
-					$pers->getNum().'</td><td>'.
+					"<a href=".'"'."index.php?page=2&id=".$pers->getNum().'">'.$pers->getNum().'</a></td><td>'.
 					$pers->getNom().'</td><td>'.
 					$pers->getPre().'</td></tr>'."\n";
 				}
 			 ?>
+			 <p>Cliquez sur le numero de la personne pour plus d'information</p>
 	</table>
