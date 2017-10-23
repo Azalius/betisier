@@ -1,16 +1,16 @@
 <?php
 
 	$pdo = new Mypdo();
-	$villeMan = new VilleManager($pdo);
+	$persMan = new VilleManager($pdo);
  ?>
 
 
-	<h1>Liste des villes</h1>
+	<h1>Liste des personnes</h1>
 	<table>
 		<p>
 			Actuellement
-			<?php echo $villeMan->nbVille(); ?>
-			 villes sont enregistrées
+			<?php echo $persMan->nbPers(); ?>
+			 personnes sont enregistrées
 		</p>
 		<tr>
 			<td>Numéro</td>
