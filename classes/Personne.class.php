@@ -56,15 +56,41 @@ class Personne{
 class Etudiant extends Personne{
   private $dep;
   private $ville;
+  public function add($donnees){
+    foreach($donnees as $attribut => $valeur){
+      switch($attribut){
+        case 'dep_num' : $this->setDep($valeur);break;
+        case 'div_num' : $this->setVille($valeur);break;
+      }
+    }
+  }
   public function getDep(){
     return $this->dep;
   }
   public function getVille(){
     return $this->ville;
   }
+  public function setDep($num){
+    $this->dep = $num;
+  }
+  public function setVille($num){
+    $this->ville = $num;
+  }
 }
 class Salarie extends Personne{
   private $pro;
   private $fonc;
+  public function getPro(){
+    return $this->pro;
+  }
+  public function getFonc(){
+    return $this->fonc;
+  }
+  public function setPro($num){
+    $this->pro = $num;
+  }
+  public function setFonc($num){
+    $this->fonc = $num;
+  }
 }
 ?>
