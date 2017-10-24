@@ -56,6 +56,9 @@ class Personne{
 class Etudiant extends Personne{
   private $dep;
   private $ville;
+  public function __construct($d){
+    parent::__construct($d);
+  }
   public function add($donnees){
     foreach($donnees as $attribut => $valeur){
       switch($attribut){
@@ -80,6 +83,9 @@ class Etudiant extends Personne{
 class Salarie extends Personne{
   private $pro;
   private $fonc;
+  public function __construct($d){
+    parent::__construct($d);
+  }
   public function getPro(){
     return $this->pro;
   }

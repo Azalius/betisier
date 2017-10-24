@@ -48,13 +48,29 @@ class PersonneManager{
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);
 		$requete->closeCursor();
-		$aret = new Personne($pers);
+		$aret = new Etudiant($pers);
 		$sql = 'SELECT div_num, dep_num FROM etudiant WHERE per_num = '.$idPers;
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);
 		$requete->closeCursor();
-		$aret->add($pers)
+		$aret->add($pers);
+		return $aret;
+	}
+	public function toProf($idPers){
+		$sql = 'SELECT sal_teprof, fon_num FROM personne WHERE per_num = '.$idPers;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$pers = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+		$aret = new Personne($pers);
+		$sql = 'SELECT div_num, dep_num FROM salarie WHERE per_num = '.$idPers;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$pers = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+		$aret->add($pers);
+		return $aret;
 	}
 }
 ?>

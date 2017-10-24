@@ -6,7 +6,36 @@
 
 	<?php
 		if (!empty($_GET["id"])){
-			echo("<h2>Detail</h2>");
+			echo("<h2>Detail ");
+			if($persMan.isEtu($_GET["id"])){
+				echo ("sur l'etudiant ");
+				$pers = $persMan.toEtu($_GET["id"]);
+				echo $pers->getNom();
+				?>
+				<table>
+					<tr>
+						<td>Prenom</td>
+						<td>Mail</td>
+						<td>Tel</td>
+						<td>Departement</td>
+						<td>ville</td>
+					</tr>
+					<tr>
+						<?php
+							echo "<td>$pers.getPre()</td>"."\n".
+							"<td>$pers.getMail()</td>"."\n".
+							"<td>$pers.getTel()</td>"."\n".
+							"<td>$pers.getDep()</td>"."\n".
+							"<td>$pers.getVille()</td>"."\n"
+						 ?>
+					</tr>
+				</table>
+			<?php }
+			else{
+				echo("sur le salarie ") ;
+				$pers = $persMan.toEtu($_GET["id"]);
+				echo $pers->getNom();
+			}
 		}
 	?>
 
