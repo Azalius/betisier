@@ -5,6 +5,8 @@ class Personne{
   private $pre;
   private $mail;
   private $tel;
+  private $mdp;
+  private $log;
 
   public function __construct($valeurs = array()) {
     	if(!empty($valeurs)){
@@ -22,6 +24,15 @@ class Personne{
 				}
 			}
 		}
+    public function finAjoutPersonne($data){
+  		$this->setNom($data['nom']);
+  		$this->setPre($data['prenom']);
+  		$this->setTel($data['telephone']);
+  		$this->setMail($data['mail']);
+  		$this->setLog($data['login']);
+  		$this->setMdp($data['password']);
+  		print_r($this->persAjout);
+  	}
     public function setMail($num){
       $this->mail = $num;
     }
@@ -37,6 +48,12 @@ class Personne{
     public function setTel($num){
       $this->tel = $num;
     }
+    public function setLog($num){
+      $this->log = $num;
+    }
+    public function setMdp($num){
+      $this->mdp = $num;
+    }
     public function getNom(){
       return $this->nom;
     }
@@ -51,6 +68,12 @@ class Personne{
     }
     public function getTel(){
       return $this->tel;
+    }
+    public function getLog(){
+      return $this->log;
+    }
+    public function getMdp(){
+      return $this->mdp;
     }
 }
 class Etudiant extends Personne{

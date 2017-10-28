@@ -2,10 +2,27 @@
 require_once("Personne.class.php");
 class PersonneManager{
 	private $db;
+	private $persAjout;
 		public function __construct($bede){
 			$this->db = $bede;
 		}
-
+	public function getAllFunction(){
+		$listFonc = array();
+		$sql = 'SELECT fon_num, fon_libelle FROM fonction';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while($fonc = $requete->fetch(PDO::FETCH_OBJ)){
+			foreach($fonc as $attribut => $valeur){
+				switch($attribut){
+					case 'fon_num' : $num = $valeur;break;
+					case 'fon_libelle' : $listeFonc[$num] = $valeur;break;
+				}
+			}
+		}
+		$requete->closeCursor();
+		print_r($listeFonc);
+		return $listeFonc;
+	}
 	public function getAllPers() {
 		$listePers = array();
 		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne';
@@ -71,6 +88,23 @@ class PersonneManager{
 		$requete->closeCursor();
 		$aret->add($pers);
 		return $aret;
+	}
+	public function prepAjoutPersonne($data){
+		$this->persAjout = 'INSERT INTO personne()';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$pers = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+	}
+	public function finAjoutEtudiant($data){
+
+	}
+	public function finAjoutSalarie($data){
+		$sql = 'INSERT INTO salarie()';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$pers = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
 	}
 }
 ?>

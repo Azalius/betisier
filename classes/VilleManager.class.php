@@ -25,5 +25,12 @@ class VilleManager{
     $requete->closeCursor();
     return $nbvilles->total;
   }
+	public function ajouterVille($ville){
+		$sql = 'INSERT INTO ville(vil_nom) VALUES ('.'"'.$ville.'"'.")";
+		print_r($sql);
+    $requete = $this->db->prepare($sql);
+    $requete->execute();
+    $requete->closeCursor();
+	}
 }
 ?>
