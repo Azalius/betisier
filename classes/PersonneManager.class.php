@@ -26,7 +26,7 @@ class PersonneManager{
     return $nbpers->total;
   }
 	public function getPers($idPers){
-		$sql = 'SELECT per_num, per_nom, per_prenom,per_mail, per_tel FROM personne WHERE per_num = '.$idPers;
+		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne WHERE per_num = '.$idPers;
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);
@@ -34,7 +34,7 @@ class PersonneManager{
 		$aret = new Personne($pers);
 		return $aret;
 	}
-	public function isEtu($idpers){
+	public function isEtu($idPers){
 		$sql = 'SELECT COUNT(per_num) as total FROM etudiant WHERE per_num = '.$idPers;
     $requete = $this->db->prepare($sql);
     $requete->execute();
@@ -43,7 +43,7 @@ class PersonneManager{
     return $nbpers->total != 0;
 	}
 	public function toEtu($idPers){
-		$sql = 'SELECT per_num, per_nom, per_prenom FROM personne WHERE per_num = '.$idPers;
+		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne WHERE per_num = '.$idPers;
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);
@@ -58,13 +58,13 @@ class PersonneManager{
 		return $aret;
 	}
 	public function toProf($idPers){
-		$sql = 'SELECT sal_teprof, fon_num FROM personne WHERE per_num = '.$idPers;
+		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne WHERE per_num = '.$idPers;
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);
 		$requete->closeCursor();
-		$aret = new Personne($pers);
-		$sql = 'SELECT div_num, dep_num FROM salarie WHERE per_num = '.$idPers;
+		$aret = new Salarie($pers);
+		$sql = 'SELECT sal_telprof, fon_num FROM salarie WHERE per_num = '.$idPers;
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);

@@ -7,12 +7,12 @@
 	<?php
 		if (!empty($_GET["id"])){
 			echo("<h2>Detail ");
-			if($persMan.isEtu($_GET["id"])){
-				echo ("sur l'etudiant ");
-				$pers = $persMan.toEtu($_GET["id"]);
+			if($persMan->isEtu($_GET["id"])){
+				echo (" sur l'etudiant ");
+				$pers = $persMan->toEtu($_GET["id"]);
 				echo $pers->getNom();
 				?>
-				<table>
+			</h2><table>
 					<tr>
 						<td>Prenom</td>
 						<td>Mail</td>
@@ -22,22 +22,40 @@
 					</tr>
 					<tr>
 						<?php
-							echo "<td>$pers.getPre()</td>"."\n".
-							"<td>$pers.getMail()</td>"."\n".
-							"<td>$pers.getTel()</td>"."\n".
-							"<td>$pers.getDep()</td>"."\n".
-							"<td>$pers.getVille()</td>"."\n"
+							echo "<td>".$pers->getPre()."</td>"."\n".
+							"<td>".$pers->getMail()."</td>"."\n".
+							"<td>".$pers->getTel()."</td>"."\n".
+							"<td>".$pers->getDep()."</td>"."\n".
+							"<td>".$pers->getVille()."</td>"."\n"
 						 ?>
 					</tr>
 				</table>
 			<?php }
 			else{
-				echo("sur le salarie ") ;
-				$pers = $persMan.toEtu($_GET["id"]);
-				echo $pers->getNom();
-			}
-		}
-	?>
+				echo(" sur le salarie ") ;
+				$pers = $persMan->toProf($_GET["id"]);
+				echo $pers->getNom(); ?>
+			</h2><table>
+					<tr>
+						<td>Prenom</td>
+						<td>Mail</td>
+						<td>Tel</td>
+						<td>Fonction</td>
+						<td>Telephone pro</td>
+					</tr>
+					<tr>
+						<?php
+							echo "<td>".$pers->getPre()."</td>"."\n".
+							"<td>".$pers->getMail()."</td>"."\n".
+							"<td>".$pers->getTel()."</td>"."\n".
+							"<td>".$pers->getPro()."</td>"."\n".
+							"<td>".$pers->getFonc()."</td>"."\n"
+						 ?>
+					</tr>
+				</table>
+			 <?php }
+		} ?>
+
 
 	<h1>Liste des personnes : </h1>
 	<table>

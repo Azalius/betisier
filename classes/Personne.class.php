@@ -86,6 +86,14 @@ class Salarie extends Personne{
   public function __construct($d){
     parent::__construct($d);
   }
+  public function add($donnees){
+    foreach($donnees as $attribut => $valeur){
+      switch($attribut){
+        case 'sal_telprof' : $this->setPro($valeur);break;
+        case 'fon_num' : $this->setFonc($valeur);break;
+      }
+    }
+  }
   public function getPro(){
     return $this->pro;
   }
