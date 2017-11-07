@@ -20,8 +20,26 @@ class PersonneManager{
 			}
 		}
 		$requete->closeCursor();
-		print_r($listeFonc);
+		//print_r($listeFonc);
 		return $listeFonc;
+	}
+	public function getAllEnseignant(){
+		$listEns = array();
+		$sql = 'SELECT p.per_num, per_nom FROM personne p, salarie s, fonction f WHERE p.per_num = s.per_num AND s.fon_num = f.fon_num AND fon_libelle = '."'".'Enseignant'."'" ;
+		print_r($sql);
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while($fonc = $requete->fetch(PDO::FETCH_OBJ)){
+			foreach($fonc as $attribut => $valeur){
+				switch($attribut){
+					case 'per_num' : $num = $valeur;break;
+					case 'per_nom' : $listeEns[$num] = $valeur;break;
+				}
+			}
+		}
+		$requete->closeCursor();
+		print_r($listeEns);
+		return $listeEns;
 	}
 	public function getAllPers() {
 		$listePers = array();
