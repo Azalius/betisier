@@ -66,17 +66,23 @@ case 9:
 case 10:
 	// inclure ici la page....
     break;
-    
+
 case 11:
 	// inclure ici la page...
     break;
 
 case 12:
 	// inclure ici la page...
-    break;    
-    
+    break;
+case 13:
+	// inclure ici la page...
+		break;
+case 14:
+		include("pages/connexion.inc.php");
+		break;
+
 default : 	include_once('pages/accueil.inc.php');
 }
-	
+
 ?>
 </div>
