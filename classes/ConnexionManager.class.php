@@ -19,8 +19,7 @@ class ConnexionManager{
         return false;
       }
       else{
-        $salt = "48@!alsd";
-        $passwordMD5 = md5(md5($password).$salt);
+        $passwordMD5=toPassword($pass);
         if ($passwordMD5 == $user->per_pwd){
           return true;
         }
