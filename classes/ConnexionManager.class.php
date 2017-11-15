@@ -8,8 +8,8 @@ class ConnexionManager{
     public function CheckConnexion($login, $pass){
       $password = $pass;
 
-      $sql = 'SELECT per_login, per_pwd FROM PERSONNE
-      WHERE per_login = '.$login;
+      $sql = "SELECT per_login, per_pwd FROM PERSONNE
+      WHERE per_login = '".$login."'";
       $requete = $this->db->prepare($sql);
       $requete->execute();
 
@@ -19,8 +19,7 @@ class ConnexionManager{
         return false;
       }
       else{
-        $salt = "48@!alsd";
-        $passwordMD5 = md5(md5($password).$salt);
+        $passwordMD5=toPassword($pass);
         if ($passwordMD5 == $user->per_pwd){
           return true;
         }
