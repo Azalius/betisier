@@ -2,7 +2,6 @@
 require_once("Personne.class.php");
 class PersonneManager{
 	private $db;
-	private $persAjout;
 		public function __construct($bede){
 			$this->db = $bede;
 		}
@@ -22,6 +21,39 @@ class PersonneManager{
 		$requete->closeCursor();
 		//print_r($listeFonc);
 		return $listeFonc;
+	}
+	public function getAllAnnee(){
+		$listAn = array();
+		$sql = 'SELECT div_num, div_nom FROM division';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while($an = $requete->fetch(PDO::FETCH_OBJ)){
+			foreach($an as $attribut => $valeur){
+				switch($attribut){
+					case 'div_num' : $num = $valeur;break;
+					case 'div_nom' : $listeAn[$num] = $valeur;break;
+				}
+			}
+		}
+		$requete->closeCursor();
+		return $listeAn;
+	}
+	public function getAllDepartement(){
+		$listeDep = array();
+		$sql = 'SELECT dep_num, dep_nom FROM departement';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while($fonc = $requete->fetch(PDO::FETCH_OBJ)){
+			foreach($fonc as $attribut => $valeur){
+				switch($attribut){
+					case 'dep_num' : $num = $valeur;break;
+					case 'dep_nom' : $listeDep[$num] = $valeur;break;
+				}
+			}
+		}
+		$requete->closeCursor();
+		//print_r($listeFonc);
+		return $listeDep;
 	}
 	public function getAllEnseignant(){
 		$listEns = array();
@@ -69,6 +101,15 @@ class PersonneManager{
 		$aret = new Personne($pers);
 		return $aret;
 	}
+	public function getPersFromLogin($log){
+		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne WHERE per_login = '.$log;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$pers = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+		$aret = new Personne($pers);
+		return $aret;
+	}
 	public function isEtu($idPers){
 		$sql = 'SELECT COUNT(per_num) as total FROM etudiant WHERE per_num = '.$idPers;
     $requete = $this->db->prepare($sql);
@@ -108,21 +149,33 @@ class PersonneManager{
 		return $aret;
 	}
 	public function prepAjoutPersonne($data){
-		$this->persAjout = 'INSERT INTO personne()';
+	}
+	public function AjoutEtudiant($data){
+		$nb = $this->finAjoutPersonne();
+		$sql = "INSERT INTO etudiant(per_num, dep_num, div_num) VALUES
+		(".$nb.', '.$data["departement"].', '.$data["annee"].')';
 		$requete = $this->db->prepare($sql);
-		$requete->execute();
-		$pers = $requete->fetch(PDO::FETCH_OBJ);
+    $requete->execute();
 		$requete->closeCursor();
 	}
-	public function finAjoutEtudiant($data){
-
-	}
-	public function finAjoutSalarie($data){
-		$sql = 'INSERT INTO salarie()';
+	public function AjoutSalarie($data){
+		$nb = $this->finAjoutPersonne();
+		$sql = "INSERT INTO salarie(per_num, sal_telprof, fon_num) VALUES
+		(".$nb.', '.$data["telpro"].', '.$data["fonction"].')';
 		$requete = $this->db->prepare($sql);
-		$requete->execute();
-		$pers = $requete->fetch(PDO::FETCH_OBJ);
+    $requete->execute();
 		$requete->closeCursor();
+	}
+	public function finAjoutPersonne(){
+		$sql = 'INSERT INTO personne(per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd, per_admin)
+		values ('.$_SESSION["nom"].', '.$_SESSION["prenom"].', '.
+		$_SESSION["telephone"].', '.$_SESSION["mail"].', '.$_SESSION["login"].', '.
+		toPassword($_SESSION["password"]).', 0)'; 
+		$requete = $this->db->prepare($sql);
+    $requete->execute();
+		$id = $this->db->lastInsertId();
+		$requete->closeCursor();
+		return $id;
 	}
 }
 ?>
