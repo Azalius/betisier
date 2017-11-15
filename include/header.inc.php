@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -12,7 +13,7 @@
 </head>
 	<body>
 	<div id="header">
-    
+
 		<div id="connect">
       <a href="index.php?page=14">Connexion</a>
 		</div>

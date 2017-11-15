@@ -8,8 +8,8 @@ class ConnexionManager{
     public function CheckConnexion($login, $pass){
       $password = $pass;
 
-      $sql = 'SELECT per_login, per_pwd FROM PERSONNE
-      WHERE per_login = '.$login;
+      $sql = "SELECT per_login, per_pwd FROM PERSONNE
+      WHERE per_login = '".$login."'";
       $requete = $this->db->prepare($sql);
       $requete->execute();
 
