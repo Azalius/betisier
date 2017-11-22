@@ -16,6 +16,9 @@
 
 		<div id="connect">
       <?php
+      if(empty($_SESSION['user'])){
+        $_SESSION['user']='';
+      }
       if ($_SESSION['user'] !=''){
         echo "Utilisateur : <a>".$_SESSION['user']."</a>";
         ?>

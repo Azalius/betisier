@@ -19,6 +19,7 @@
 						$nomPersonne = $perManager->getPers($NumPersonne)->getNom();
 						$prePersonne = $perManager->getPers($NumPersonne)->getPre();
 						$note = $noteManager->getMoyNotes($NumCitation);
+						$note=bcdiv($note, 1, 2);
 			 ?>
 	<tr><td><?php echo $prePersonne." ".$nomPersonne?>
 	</td><td><?php echo $citation -> getCitLib();?>

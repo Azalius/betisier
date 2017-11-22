@@ -75,7 +75,7 @@ case 12:
 	// inclure ici la page...
     break;
 case 13:
-	// inclure ici la page...
+	include("pages/rechercherCitation.inc.php");
 		break;
 case 14:
 		include("pages/connexion.inc.php");

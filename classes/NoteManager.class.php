@@ -21,7 +21,6 @@ class NoteManager{
 	}
 
   public function getMoyNotes($citnum){
-    PRINT_R($citnum);
     $sql = 'SELECT AVG(vot_valeur) as moyenne FROM vote
             WHERE cit_num = '.$citnum;
     $requete = $this->db->prepare($sql);
