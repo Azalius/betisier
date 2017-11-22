@@ -32,11 +32,9 @@ class CitationsManager{
 		$requete->closeCursor();
 		return $nbcitation->total;
 	}
-	public function insertCitation($idProf, $date, $citation){ //TODO real etu
-		$date = getEnglishDate($date);
+	public function insertCitation($idProf, $date, $citation){
 		$sql = 'INSERT INTO citation (per_num, cit_date, cit_libelle, per_num_etu)
-						values ('.$idProf.', '."'".$date."'".', '."'".$citation."'".', 3)';
-		print_r($sql);
+						values ('.$idProf.', '."'".$date."'".', '."'".$citation."'".', '. $persMan->getPersFromLogin($_SESSION['user'])->getNum()')';
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$requete->closeCursor();

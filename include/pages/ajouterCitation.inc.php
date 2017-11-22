@@ -3,9 +3,14 @@
 	$persMan = new PersonneManager($pdo);
   $citMan = new CitationsManager($pdo);
 	$motMan = new MotManager($pdo);
-	$isACorrection = !$motMan->isPhraseOk($_POST["cit"])
+	if (empty($_POST["cit"])){
+		$isACorrection = False;
+	}
+	else{
+		$isACorrection = !$motMan->isPhraseOk($_POST["cit"]);
+	}
+	print_r($isACorrection);
 ?>
-
 <?php if(!empty($_POST["cit"]) && !$isACorrection){
   $citMan->insertCitation($_POST["ense"], $_POST["date"], $_POST["cit"]);
   echo '<h4>Insertion effectuée</h4>';
@@ -24,9 +29,16 @@
 	if ($isACorrection){echo 'value='.'"'.$_POST['date'].'"';}
 	?>><br>
   Citation :
-  <textarea rows="4" cols="50" name ="cit" <?php
-	if ($isACorrection){echo 'value='.'"'.$motMan->getCorrectedPhrase($_POST['cit']).'"';}
-	?>>
-  </textarea>
+  <textarea rows="4" cols="50" name ="cit">
+<?php if ($isACorrection){echo ($motMan->getCorrectedPhrase($_POST['cit']));} ?>
+	</textarea>
+	<?php
+	if ($isACorrection){
+		foreach ($motMan->getAllBadWordInPhrase($_POST["cit"]) as $mot){
+			echo '<p>Le mot <span class = "motInterdit">'.$mot.'</span> est interdit</p>';
+		}
+	}
+	?>
+
   <input type="submit" value="Valider"/>
 </form>

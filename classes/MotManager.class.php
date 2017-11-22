@@ -9,7 +9,7 @@ class MotManager{
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		while($citation = $requete -> fetch(PDO::FETCH_OBJ)){
-      $this->allBadWord[] = $citation['mot'];
+      $this->allBadWord[] = $citation->mot_interdit;
 		}
 		$requete->closeCursor();
   }
@@ -21,19 +21,21 @@ class MotManager{
   }
   public function isMotOk($mot){
     foreach ($this->allBadWord as $badMot){
-      if ($mot = $badMot){
-        $allBadMot[] = $mot;
+      if ($mot == $badMot){
+        return False;
       }
     }
+    return True;
   }
   public function getCorrectedPhrase($phrase){
     $mots = explode(" ", $phrase);
     $newPhrase = [];
+    $i = 1;
     foreach ($mots as $mot) {
       $lowMot = strtolower($mot);
       if (!$this->isMotOk($lowMot)){
         $tiret = "";
-        for ($i = 1 ; i<= strlen($mot) ; $i=$i+1){
+        for ($i = 1 ; $i<= strlen($mot) ; $i=$i+1){
           $tiret = $tiret."-";
         }
         $newPhrase[] = $tiret;
@@ -42,7 +44,7 @@ class MotManager{
         $newPhrase[] = $mot;
       }
     }
-  return $allBadMot;
+  return implode(" ", $newPhrase);
   }
   public function getAllBadWordInPhrase($phrase){
     $allBadMot = [];

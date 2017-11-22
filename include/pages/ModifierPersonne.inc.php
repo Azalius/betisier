@@ -3,8 +3,6 @@
 	$pdo = new Mypdo();
 	$persMan = new VilleManager($pdo);
  ?>
-
-
 	<h1>Liste des personnes</h1>
 	<table>
 		<p>
