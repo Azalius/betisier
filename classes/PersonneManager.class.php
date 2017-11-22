@@ -102,7 +102,7 @@ class PersonneManager{
 		return $aret;
 	}
 	public function getPersFromLogin($log){
-		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne WHERE per_login = '.'"'.$log.'"';
+		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel, per_login FROM personne WHERE per_login = '.'"'.$log.'"';
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);

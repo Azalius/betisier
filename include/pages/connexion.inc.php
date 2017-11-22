@@ -7,12 +7,13 @@ if(!empty($_POST['username'])){
       ?> <img src="image/valid.png" alt="Valid" title="Vous avez bien été connecté"/>
       <?php
       $personne=$persMan->getPersFromLogin($_POST['username']);
-      $_SESSION['user']= $personne;
+      $_SESSION['user']= $personne->getPre();
       $timer=2;
       $page='index.php?page=0';
       header("Refresh: $timer;url=$page");
       ?>
-       Vous allez être redirigé dans <?php echo $timer; ?> secondes. <?php
+      Vous avez bien été connecté.<br>
+      Vous allez être redirigé dans <?php echo $timer; ?> secondes. <?php
      }elseif($coMan->CheckConnexion($_POST['username'], $_POST['password'])){
        echo "Captcha invalide.";
    }else{

@@ -15,7 +15,15 @@
 	<div id="header">
 
 		<div id="connect">
+      <?php
+      if ($_SESSION['user'] !=''){
+        echo "Utilisateur : <a>".$_SESSION['user']."</a>";
+        ?>
+        <a href="index.php?page=15">Déconnexion</a>
+
+    <?php } else { ?>
       <a href="index.php?page=14">Connexion</a>
+    <?php } ?>
 		</div>
 		<div id="entete">
 			<div id="logo">
