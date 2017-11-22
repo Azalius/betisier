@@ -33,8 +33,10 @@ class CitationsManager{
 		return $nbcitation->total;
 	}
 	public function insertCitation($idProf, $date, $citation){
+		$pdo=new Mypdo();
+		$persMan = new PersonneManager($pdo);
 		$sql = 'INSERT INTO citation (per_num, cit_date, cit_libelle, per_num_etu)
-						values ('.$idProf.', '."'".$date."'".', '."'".$citation."'".', '. $persMan->getPersFromLogin($_SESSION['user'])->getNum()')';
+						values ('.$idProf.', '."'".$date."'".', '."'".$citation."'".', '. $persMan->getPersFromLogin($_SESSION['user'])->getNum().')';
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$requete->closeCursor();

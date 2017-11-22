@@ -7,7 +7,7 @@ if(!empty($_POST['username'])){
       ?> <img src="image/valid.png" alt="Valid" title="Vous avez bien été connecté"/>
       <?php
       $personne=$persMan->getPersFromLogin($_POST['username']);
-      $_SESSION['user']= $personne->getPre();
+      $_SESSION['user']= $personne->getLog();
       $timer=2;
       $page='index.php?page=0';
       header("Refresh: $timer;url=$page");
