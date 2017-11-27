@@ -32,7 +32,7 @@
 		 <img src='image/erreur.png' alt='Déja noté'/>
 		 </td>";} else {
 			 echo "<td>
-			 <a href='index.php?page=16'><img src='image/modifier.png' alt='Déja noté'/></a>
+			 <a href='index.php?page=16&citation=$NumCitation'><img src='image/modifier.png' alt='Déja noté'/></a>
 			 </td>";}
 		  ?>
 	 </tr>
