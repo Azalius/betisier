@@ -29,10 +29,10 @@
 	</td><td><?php echo $note;?>
 	</td><?php if ($perManager->isEtu($perManager->getPersFromLogin($_SESSION['user'])->getNum()) && $noteManager->getNoteCitationPersonne($NumCitation,$perManager->getPersFromLogin($_SESSION['user'])->getNum())){
 		echo "<td>
-		 Noté
+		 <img src='image/erreur.png' alt='Déja noté'/>
 		 </td>";} else {
 			 echo "<td>
-			 Pas noté
+			 <a href='index.php?page=16'><img src='image/erreur.png' alt='Déja noté'/></a>
 			 </td>";}
 		  ?>
 	 </tr>
