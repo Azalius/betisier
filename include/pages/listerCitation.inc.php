@@ -11,7 +11,9 @@
 		Actuellement
 		<?php echo $citManager->nbCitations() ?>
 		citations sont enregistrées.
-	<tr><th>Nom de l'enseignant</th><th>Libellé</th><th>Date</th><th>Moyenne des notes</th></tr>
+	<tr><th>Nom de l'enseignant</th><th>Libellé</th><th>Date</th><th>Moyenne des notes</th><?php if ($perManager->isEtu($perManager->getPersFromLogin($_SESSION['user'])->getNum())){
+		echo "<th>Noter</th>";
+	}?></tr>
 	<?php
 		foreach ($citations as $citation){?>
 			<?php $NumPersonne = $citation->getPerNum();
@@ -25,7 +27,15 @@
 	</td><td><?php echo $citation -> getCitLib();?>
 	</td><td><?php echo getFrenchDate($citation -> getDate());?>
 	</td><td><?php echo $note;?>
-	</td></tr>
+	</td><?php if ($perManager->isEtu($perManager->getPersFromLogin($_SESSION['user'])->getNum()) && $noteManager->getNoteCitationPersonne($NumCitation,$perManager->getPersFromLogin($_SESSION['user'])->getNum())){
+		echo "<td>
+		 Noté
+		 </td>";} else {
+			 echo "<td>
+			 Pas noté
+			 </td>";}
+		  ?>
+	 </tr>
 	<?php }?>
 	</table>
 	<br />
