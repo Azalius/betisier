@@ -22,6 +22,7 @@ class Personne{
           case 'per_mail' : $this->setMail($valeur);break;
           case 'per_tel' : $this->setTel($valeur);break;
           case 'per_login' : $this->setLog($valeur);break;
+          case 'per_pwd' : $this->setMdp($valeur);break;
 				}
 			}
 		}

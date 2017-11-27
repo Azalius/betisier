@@ -119,7 +119,7 @@ class PersonneManager{
     return $nbpers->total != 0;
 	}
 	public function toEtu($idPers){
-		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne WHERE per_num = '.$idPers;
+		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel, per_login, per_pwd FROM personne WHERE per_num = '.$idPers;
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);
@@ -134,7 +134,7 @@ class PersonneManager{
 		return $aret;
 	}
 	public function toProf($idPers){
-		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel FROM personne WHERE per_num = '.$idPers;
+		$sql = 'SELECT per_num, per_nom, per_prenom, per_mail, per_tel, per_login, per_pwd FROM personne WHERE per_num = '.$idPers;
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$pers = $requete->fetch(PDO::FETCH_OBJ);

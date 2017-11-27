@@ -6,6 +6,7 @@
 			<li><a href="index.php?page=2">Lister</a></li>
 			<li><a href="index.php?page=1">Ajouter</a></li>
 			<li><a href="index.php?page=4">Supprimer</a></li>
+			<li><a href="index.php?page=3">Modifier</a></li>
 		</ul>
 		<p><img class="icone" src="image/citation.gif"  alt="Citation"/>Citations</p>
 		<ul>
