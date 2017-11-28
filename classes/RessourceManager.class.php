@@ -29,10 +29,28 @@ class RessourceManager{
 			foreach($an as $attribut => $valeur){
 				switch($attribut){
 					case 'div_num' : $num = $valeur;break;
-					case 'div_nom' : $listeAn[$num] = $valeur;break;
+					case 'div_nom' : $listAn[$num] = $valeur;break;
 				}
 			}
 		}
+    $requete->closeCursor();
+		return $listAn;
+  }
+  public function getAllDepartement(){
+		$listeDep = array();
+		$sql = 'SELECT dep_num, dep_nom FROM departement';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while($fonc = $requete->fetch(PDO::FETCH_OBJ)){
+			foreach($fonc as $attribut => $valeur){
+				switch($attribut){
+					case 'dep_num' : $num = $valeur;break;
+					case 'dep_nom' : $listeDep[$num] = $valeur;break;
+				}
+			}
+		}
+    $requete->closeCursor();
+		return $listeDep;
   }
 }
  ?>

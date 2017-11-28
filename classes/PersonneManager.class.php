@@ -5,23 +5,6 @@ class PersonneManager{
 		public function __construct($bede){
 			$this->db = $bede;
 		}
-	public function getAllDepartement(){
-		$listeDep = array();
-		$sql = 'SELECT dep_num, dep_nom FROM departement';
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-		while($fonc = $requete->fetch(PDO::FETCH_OBJ)){
-			foreach($fonc as $attribut => $valeur){
-				switch($attribut){
-					case 'dep_num' : $num = $valeur;break;
-					case 'dep_nom' : $listeDep[$num] = $valeur;break;
-				}
-			}
-		}
-		$requete->closeCursor();
-		//print_r($listeFonc);
-		return $listeDep;
-	}
 	public function getAllEnseignant(){
 		$listEns = array();
 		$sql = 'SELECT p.per_num, per_nom FROM personne p, salarie s, fonction f WHERE p.per_num = s.per_num AND s.fon_num = f.fon_num AND fon_libelle = '."'".'Enseignant'."'" ;
@@ -115,7 +98,7 @@ class PersonneManager{
 		$aret->add($pers);
 		return $aret;
 	}
-	public function AjoutEtudiant($data){
+	public function ajoutEtudiant($data){
 		$nb = $this->finAjoutPersonne();
 		$sql = "INSERT INTO etudiant(per_num, dep_num, div_num) VALUES
 		(".$nb.', '.$data["departement"].', '.$data["annee"].')';
@@ -123,7 +106,7 @@ class PersonneManager{
     $requete->execute();
 		$requete->closeCursor();
 	}
-	public function AjoutSalarie($data){
+	public function ajoutSalarie($data){
 		$nb = $this->finAjoutPersonne();
 		$sql = "INSERT INTO salarie(per_num, sal_telprof, fon_num) VALUES
 		(".$nb.', '.$data["telpro"].', '.$data["fonction"].')';
@@ -131,16 +114,53 @@ class PersonneManager{
     $requete->execute();
 		$requete->closeCursor();
 	}
-	public function finAjoutPersonne(){
+	private function finAjoutPersonne(){
 		$sql = 'INSERT INTO personne(per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd, per_admin)
-		values ('.$_SESSION["nom"].', '.$_SESSION["prenom"].', '.
-		$_SESSION["telephone"].', '.$_SESSION["mail"].', '.$_SESSION["login"].', '.
-		toPassword($_SESSION["password"]).', 0)';
+		values ("'.$_SESSION["nom"].'", "'.$_SESSION["prenom"].'", "'.
+		$_SESSION["telephone"].'", "'.$_SESSION["mail"].'", "'.$_SESSION["loginpers"].'", "'.
+		toPassword($_SESSION["password"]).'", 0)';
+
+		print_r($sql);
 		$requete = $this->db->prepare($sql);
     $requete->execute();
 		$id = $this->db->lastInsertId();
 		$requete->closeCursor();
 		return $id;
+	}
+	public function modifEtudiant($data){
+		$sql = 'UPDATE etudiant SET dep_num = "'
+		.$data["departement"].'", div_num = "'
+		.$data["annee"].'"'
+		.' WHERE per_num = '.$_SESSION["id"];
+		$requete = $this->db->prepare($sql);
+    $requete->execute();
+    $requete->closeCursor();
+		$this->finModifPersonne();
+	}
+	public function modifSalarie($data){
+		$sql = 'UPDATE salarie SET sal_telprof = "'
+		.$data["telpro"].'", fon_num = "'
+		.$data["fonction"].'"'
+		.' WHERE per_num = '.$_SESSION["id"];
+		$requete = $this->db->prepare($sql);
+    $requete->execute();
+    $requete->closeCursor();
+		$this->finModifPersonne();
+	}
+	private function finModifPersonne(){
+		print_r($_SESSION);
+		$sql = 'UPDATE personne SET per_nom = "'
+		.$_SESSION["nom"].'", per_prenom = "'
+		.$_SESSION["prenom"].'", per_tel = "'
+		.$_SESSION["telephone"].'", per_mail = "'
+		.$_SESSION["mail"].'", per_login = "'
+		.$_SESSION["loginpers"].'", per_pwd = "'
+		.toPassword($_SESSION["password"]).'"'
+		.' WHERE per_num = '.$_SESSION["id"];
+		 print_r($sql);
+		$requete = $this->db->prepare($sql);
+    $requete->execute();
+    $requete->closeCursor();
 	}
 }
 ?>
