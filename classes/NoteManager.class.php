@@ -29,5 +29,15 @@ class NoteManager{
     $requete->closeCursor();
     return $moyNotes->moyenne;
   }
+
+	public function getNoteCitationPersonne($citnum, $per_num){
+		$sql = 'SELECT cit_num as num FROM vote
+            WHERE cit_num = '.$citnum.' AND per_num = '.$per_num;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$note = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+    return !empty($note->num);
+	}
 }
 ?>
