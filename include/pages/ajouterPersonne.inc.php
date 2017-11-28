@@ -1,6 +1,7 @@
 <?php
 	$pdo = new Mypdo();
 	$persMan = new PersonneManager($pdo);
+	$resMan = new RessourceManager($pdo);
  ?>
 
 <?php if (empty($_POST['categorie']) && empty($_POST['annee']) && empty($_POST['fonction'])){ ?>
@@ -25,7 +26,7 @@
 	 ?>
 	<?php if ($_POST['categorie'] == "etudiant"){ ?>
 		<form action="index.php?page=1" id="etu" method="post">
-			Annee: <select name = "annee"><?php foreach ($persMan->getAllAnnee() as $num => $lib) {
+			Annee: <select name = "annee"><?php foreach ($resMan()->getAllAnnee() as $num => $lib) {
 				  echo '<option value ='.$num.'>'.$lib.'</option>';
 			} ?> </select> <br>
 			Departement: <select name = "departement"><?php foreach ($persMan->getAllDepartement() as $num => $lib) {
@@ -36,7 +37,7 @@
 	<?php } else { //TODO si login deja utilise ?>
 		<form action="index.php?page=1" id="etu" method="post">
 			Telephone professionnel : <input type="text" name="telpro"  id="telpro"><br>
-			Fonction : <select name = "fonction"><?php foreach ($persMan->getAllFunction() as $num => $lib) {
+			Fonction : <select name = "fonction"><?php foreach ($resMan()->getAllFunction() as $num => $lib) {
 				  echo '<option value ='.$num.'>'.$lib.'</option>';
 			} ?> </select>
 			<input type="submit" value="Valider"/>

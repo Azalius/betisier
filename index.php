@@ -5,6 +5,7 @@ require_once("include/header.inc.php");
 require_once("include/autoLoad.inc.php");
 require_once("classes/Mypdo.class.php");
 
+require_once("classes/RessourceManager.class.php");
 require_once("classes/VilleManager.class.php");
 ?>
 <div id="corps">
