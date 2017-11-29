@@ -19,7 +19,6 @@ class PersonneManager{
 			}
 		}
 		$requete->closeCursor();
-		print_r($listeEns);
 		return $listeEns;
 	}
 	public function getAllPers() {
