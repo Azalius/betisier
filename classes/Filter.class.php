@@ -1,7 +1,7 @@
 <?php
 
 interface Filter{
-  abstract public function matchFilter($citation);
+   public function matchFilter($citation);
 }
 
 class SimpleFilter implements Filter {
@@ -40,17 +40,17 @@ class SimpleFilter implements Filter {
     public function matchFilter($citation){
       $isOk = True;
       if ($note != vide){
-        if $citation.get() == $this.date{
+        if ($citation.get() == $this.date){
           $isOk = False;
         }
       }
       if ($date != vide){
-        if $citation.getDate() == $this.date{
+        if ($citation.getDate() == $this.date){
           $isOk = False;
         }
       }
       if ($nom != vide){
-        if $citation.getDate() == $this.date{
+        if ($citation.getDate() == $this.date){
           $isOk = False;
         }
       }
