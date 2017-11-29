@@ -26,16 +26,13 @@ if(!empty($_POST['username'])){
 
   <label for="username">Nom d'utilisateur : </label>
     <input type="text" name="username" id="username" required/>
-  </br>
+  <br>
   <label for="password">Mot de passe : </label>
     <input type="password" name="password" id="password" required/>
-  </br>
+  <br>
   <label for="captcha"> <?php $res=captcha(); $_SESSION['captRes']=$res; ?></label>
       <input type="text" name="captcha" id="captcha" required/>
-  </br>
-  <!-- <label for="captcha"><img src="image/nb/<?php // echo $_SESSION['nbAlea1']?>.jpg"> + <img src="image/nb/<?php //echo $_SESSION['nbAlea2']?>.jpg"> = </label>
-    <input type="text" name="captcha" id="captcha" required/>
-  </br> -->
+  <br>
   <input type="submit" value="Valider" class="valider">
 </form>
 
