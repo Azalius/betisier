@@ -21,7 +21,9 @@ if (!$isSearch){
   <table>
   	<tr><th>Nom de l'enseignant</th><th>Libellé</th><th>Date</th><th>Moyenne des notes</th>
   	<?php
-  		foreach ($citMan->getFilteredCitations(new Filter($_POST)) as $citation){
+      $filt = new SimpleFilter($_POST);
+  		foreach ($citMan->getAllCitations() as $citation){
+        if ($filt->matchFilter($citation))
   			      $NumPersonne = $citation->getPerNum();
   						$NumCitation = $citation->getCitNum();
   						$nomPersonne = $perManager->getPers($NumPersonne)->getNom();

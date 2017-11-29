@@ -5,26 +5,31 @@ interface Filter{
 }
 
 class SimpleFilter implements Filter {
-  const vide = "";
+  private $vide;
 	private $note;
 	private $date;
 	private $nom;
 
   private $noteMan;
+  private $persMan;
 
     public function __construct($valeurs = array()) {
     	if (!empty($valeurs))
 				$this->affecte($valeurs);
-      $db = new Pdo();
-      $noteMan= new NoteManager($db);
+
+      $db = new MyPdo();
+      $this->noteMan= new NoteManager($db);
+      $this->persMan = new PersonneManager($db);
+
+      $vide = "";
     }
 
 		public function affecte ($donnees){
 				foreach ($donnees as $attribut => $valeur){
 					switch ($attribut){
-						case 'note' : $this->setPerNum($valeur);break;
-						case 'date' : $this->setVotValeur($valeur);break;
-						case 'nom' : $this->setCitNum($valeur);break;
+						case 'note' : $this->setNote($valeur);break;
+						case 'date' : $this->setDate($valeur);break;
+						case 'nom' : $this->setNote($valeur);break;
 					}
 				}
 		}
@@ -37,20 +42,29 @@ class SimpleFilter implements Filter {
     public function getNote(){
       return $this->note;
     }
+    public function setDate($date){
+      $this->date = $date;
+    }
+    public function setNom($nom){
+      $this->nom = $nom;
+    }
+    public function setNote($note){
+      $this->note = $note;
+    }
     public function matchFilter($citation){
       $isOk = True;
-      if ($note != vide){
-        if ($citation.get() == $this.date){
+      if ($this->note != $this->vide){
+        if ($noteMan->getMoyNotes($citation.getId()) == $this->date){
           $isOk = False;
         }
       }
-      if ($date != vide){
-        if ($citation.getDate() == $this.date){
+      if ($tgis->date != $this->vide){
+        if ($citation.getDate() == $this->date){
           $isOk = False;
         }
       }
-      if ($nom != vide){
-        if ($citation.getDate() == $this.date){
+      if ($this->nom != $this->vide){
+        if ($this->persMan->getPers($citation->getPerNum()) == $this->date){
           $isOk = False;
         }
       }
