@@ -1,3 +1,34 @@
+<?php
+	$pdo = new Mypdo();
+	$persMan = new PersonneManager($pdo);
 
-	<h1>Supprimer des personnes enregistrées</h1>
-	
+	if(!empty($_GET["del"])){ // TODO check droit
+		$persMan->delPers($_GET["del"]);
+		echo '<h2>Personne supprimée<h2>';
+	}
+ ?>
+
+	<h1>Supprimer des personnes : </h1>
+	<table>
+		<p>
+			Actuellement
+			<?php echo $persMan->nbPers(); ?>
+			 personnes sont enregistrées
+		</p>
+		<tr>
+			<td>Nom</td>
+			<td>Prenom</td>
+			<td>Supprimer</td>
+		</tr>
+			<?php
+				$allPers = $persMan->getAllPers();
+				foreach ($allPers as $pers){
+					echo '<tr><td>'.
+					$pers->getNom().'</td><td>'.
+					$pers->getPre().'</td>.
+					<td><a href="index.php?page=4&del='.$pers->getNum().'"><img src = "image/erreur.png" alt="supprimer"/></a>
+					</td></tr>'."\n";
+				}
+			 ?>
+
+	</table>

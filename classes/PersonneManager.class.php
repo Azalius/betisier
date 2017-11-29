@@ -119,8 +119,6 @@ class PersonneManager{
 		values ("'.$_SESSION["nom"].'", "'.$_SESSION["prenom"].'", "'.
 		$_SESSION["telephone"].'", "'.$_SESSION["mail"].'", "'.$_SESSION["loginpers"].'", "'.
 		toPassword($_SESSION["password"]).'", 0)';
-
-		print_r($sql);
 		$requete = $this->db->prepare($sql);
     $requete->execute();
 		$id = $this->db->lastInsertId();
@@ -157,10 +155,28 @@ class PersonneManager{
 		.$_SESSION["loginpers"].'", per_pwd = "'
 		.toPassword($_SESSION["password"]).'"'
 		.' WHERE per_num = '.$_SESSION["id"];
-		 print_r($sql);
 		$requete = $this->db->prepare($sql);
     $requete->execute();
     $requete->closeCursor();
+	}
+	public function delPers($id){
+/*
+	Supprimer toutes les citations avec ?
+		if ($this->isEtu($id)){
+			$sql = 'DELETE FROM etudiant WHERE per_num = '.$id;
+		}
+		else{
+			$sql = 'DELETE FROM salarie WHERE per_num = '.$id;
+		}
+		$requete = $this->db->prepare($sql);
+    $requete->execute();
+    $requete->closeCursor();
+		$sql = 'DELETE FROM salarie WHERE per_num = '.$id;
+		$requete = $this->db->prepare($sql);
+    $requete->execute();
+    $requete->closeCursor();
+
+*/
 	}
 }
 ?>

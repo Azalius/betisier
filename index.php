@@ -7,6 +7,7 @@ require_once("classes/Mypdo.class.php");
 
 require_once("classes/RessourceManager.class.php");
 require_once("classes/VilleManager.class.php");
+require_once("classes/Filter.class.php");
 ?>
 <div id="corps">
 <?php

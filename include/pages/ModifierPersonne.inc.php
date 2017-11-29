@@ -6,7 +6,7 @@
 	<h1>Modifier une personne</h1>
 	<?php if(empty($_GET["pers"])){
 		if (!empty($_POST["annee"])){
-			$persMan->modifSalarie($_POST);
+			$persMan->modifEtudiant($_POST);
 			echo '<h2>Etudiant modifie</h2>';
 		}
 		if (!empty($_POST["fonction"])){

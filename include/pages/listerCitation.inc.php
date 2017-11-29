@@ -7,7 +7,6 @@
 	$citations = $citManager -> getAllCitations();
 ?>
 <table>
-	<p>
 		Actuellement
 		<?php echo $citManager->nbCitations() ?>
 		citations sont enregistrées.
