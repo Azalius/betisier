@@ -5,13 +5,18 @@ interface Filter{
 }
 
 class SimpleFilter implements Filter {
+  const vide = "";
 	private $note;
 	private $date;
 	private $nom;
 
+  private $noteMan;
+
     public function __construct($valeurs = array()) {
     	if (!empty($valeurs))
 				$this->affecte($valeurs);
+      $db = new Pdo();
+      $noteMan= new NoteManager($db);
     }
 
 		public function affecte ($donnees){
@@ -33,7 +38,23 @@ class SimpleFilter implements Filter {
       return $this->note;
     }
     public function matchFilter($citation){
-      
+      $isOk = True;
+      if ($note != vide){
+        if $citation.get() == $this.date{
+          $isOk = False;
+        }
+      }
+      if ($date != vide){
+        if $citation.getDate() == $this.date{
+          $isOk = False;
+        }
+      }
+      if ($nom != vide){
+        if $citation.getDate() == $this.date{
+          $isOk = False;
+        }
+      }
+      return $isOk;
     }
 }
 ?>
