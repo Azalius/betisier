@@ -58,12 +58,14 @@
 
 
 	<h1>Liste des personnes : </h1>
+	<p>
+		Actuellement
+		<?php echo $persMan->nbPers(); ?>
+		 personnes sont enregistrées
+	</p>
+	<p>Cliquez sur le numero de la personne pour plus d'information</p>
 	<table>
-		<p>
-			Actuellement
-			<?php echo $persMan->nbPers(); ?>
-			 personnes sont enregistrées
-		</p>
+
 		<tr>
 			<td>Numéro</td>
 			<td>Nom</td>
@@ -78,5 +80,4 @@
 					$pers->getPre().'</td></tr>'."\n";
 				}
 			 ?>
-			 <p>Cliquez sur le numero de la personne pour plus d'information</p>
 	</table>

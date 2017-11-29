@@ -9,12 +9,12 @@
  ?>
 
 	<h1>Supprimer des personnes : </h1>
+	<p>
+		Actuellement
+		<?php echo $persMan->nbPers(); ?>
+		 personnes sont enregistrées
+	</p>
 	<table>
-		<p>
-			Actuellement
-			<?php echo $persMan->nbPers(); ?>
-			 personnes sont enregistrées
-		</p>
 		<tr>
 			<td>Nom</td>
 			<td>Prenom</td>
@@ -25,10 +25,9 @@
 				foreach ($allPers as $pers){
 					echo '<tr><td>'.
 					$pers->getNom().'</td><td>'.
-					$pers->getPre().'</td>.
+					$pers->getPre().'</td>
 					<td><a href="index.php?page=4&del='.$pers->getNum().'"><img src = "image/erreur.png" alt="supprimer"/></a>
 					</td></tr>'."\n";
 				}
 			 ?>
-
 	</table>

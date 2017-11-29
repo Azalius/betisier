@@ -14,12 +14,12 @@
 			echo '<h2>Salarie modifie</h2>';
 		}
 	?>
+	<p>
+		Actuellement
+		<?php echo $persMan->nbPers(); ?>
+		 personnes sont enregistrées
+	</p>
 	<table>
-		<p>
-			Actuellement
-			<?php echo $persMan->nbPers(); ?>
-			 personnes sont enregistrées
-		</p>
 		<tr>
 			<td>Nom</td>
 			<td>Prenom</td>
@@ -29,7 +29,7 @@
 				echo "<tr>";
 				echo "<td>".$pers->getNom()."</td>";
 				echo "<td>".$pers->getPre()."</td>";
-				echo '<td><a href="http://localhost/bet/index.php?page=3&pers='.$pers->getNum().'"><img src = "image/modifier.png" alt = "modifier"/></a></td>';
+				echo '<td><a href="index.php?page=3&pers='.$pers->getNum().'"><img src = "image/modifier.png" alt = "modifier"/></a></td>';
 				echo "</tr>";
 			}
 			?></table>
