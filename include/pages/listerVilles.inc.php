@@ -6,12 +6,12 @@
 
 
 	<h1>Liste des villes</h1>
+	<p>
+		Actuellement
+		<?php echo $villeMan->nbVille(); ?>
+		 villes sont enregistrées
+	</p>
 	<table>
-		<p>
-			Actuellement
-			<?php echo $villeMan->nbVille(); ?>
-			 villes sont enregistrées
-		</p>
 		<tr>
 			<td>Numéro</td>
 			<td>Nom</td>

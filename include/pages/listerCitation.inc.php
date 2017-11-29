@@ -6,10 +6,12 @@
 	$noteManager = new NoteManager ($pdo);
 	$citations = $citManager -> getAllCitations();
 ?>
+
+<p>Actuellement
+<?php echo $citManager->nbCitations() ?>
+ citations sont enregistrées.
+</p>
 <table>
-		Actuellement
-		<?php echo $citManager->nbCitations() ?>
-		citations sont enregistrées.
 	<tr><th>Nom de l'enseignant</th><th>Libellé</th><th>Date</th><th>Moyenne des notes</th><?php if (!empty($_SESSION['user'])){
 		if ($perManager->isEtu($perManager->getPersFromLogin($_SESSION['user'])->getNum())){
 		echo "<th>Noter</th>";
