@@ -17,7 +17,7 @@ if (empty($_POST['note']) && !empty($_GET['citation']) && $perManager->isEtu($pe
     <input type="submit" value="Valider" class="valider">
   </form>
 
-<?php } elseif (!empty($_POST['note'])) {
+<?php } elseif (!empty($_POST['note']) && $perManager->isEtu($perManager->getPersFromLogin($_SESSION['user'])->getNum())) {
 
   $noteManager->insertNote($_GET['citation'],$perManager->getPersFromLogin($_SESSION['user'])->getNum(),$_POST['note']);
 
