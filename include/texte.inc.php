@@ -86,6 +86,9 @@ case 15:
 case 16:
 		include("pages/ajouterNote.inc.php");
 		break;
+case 17:
+		include("pages/supprimerNote.inc.php");
+		break;
 
 default : 	include_once('pages/accueil.inc.php');
 }
