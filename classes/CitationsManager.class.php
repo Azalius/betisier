@@ -41,5 +41,14 @@ class CitationsManager{
 		$requete->execute();
 		$requete->closeCursor();
 	}
+	public function getCitationFromNum($num){
+		$sql = 'SELECT * FROM citation
+						WHERE cit_num ='.$num;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$cit = $requete -> fetch(PDO::FETCH_OBJ);
+		$citation = new Citation($cit);
+		return $citation;
+	}
 }
 ?>

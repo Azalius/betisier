@@ -39,5 +39,17 @@ class NoteManager{
 		$requete->closeCursor();
     return !empty($note->num);
 	}
+	public function insertNote($numCit,$numPers,$note){
+		$sql = 'INSERT into vote (cit_num, per_num, vot_valeur) values ('.$numCit.','.$numPers.','.$note.')';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$requete->closeCursor();
+	}
+	public function supprimerNote($numCit,$numPers){
+		$sql = 'DELETE FROM vote WHERE cit_num='.$numCit.' AND per_num='.$numPers;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$requete->closeCursor();
+	}
 }
 ?>
