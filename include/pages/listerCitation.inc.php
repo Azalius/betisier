@@ -32,8 +32,8 @@
 	</td><?php if (!empty($_SESSION['user'])){
 	if ($perManager->isEtu($perManager->getPersFromLogin($_SESSION['user'])->getNum()) && $noteManager->getNoteCitationPersonne($NumCitation,$perManager->getPersFromLogin($_SESSION['user'])->getNum())){
 		echo "<td>
-		 <img src='image/erreur.png' alt='Déja noté'/>
-		 </td>";} else {
+	 <img src='image/erreur.png' alt='Déja noté'/>
+		 </td>";} elseif ($perManager->isEtu($perManager->getPersFromLogin($_SESSION['user'])->getNum())) {
 			 echo "<td>
 			 <a href='index.php?page=16&citation=$NumCitation'><img src='image/modifier.png' alt='Déja noté'/></a>
 			 </td>";}}
@@ -41,4 +41,4 @@
 	 </tr>
 	<?php }?>
 	</table>
-	<br />
+	<br>
