@@ -12,18 +12,20 @@ if (!$isSearch){
   Nom de l'Enseignant :  <input type="text" name="nom"  id="nom"><br>
   Date : <input type="date" name="date"  id="date"><br>
   Note obtenue <input type="text" name="note"  id="note"><br>
+  <input type="radio" name="condition" value="atleast">Au moins une des conditions<br>
+  <input type="radio" name="condition" value="all">Toutes les conditions<br>
   <input type="submit" value="Rechercher"/>
 </form>
 
-<?php } else { ?>
+<?php } else {
+  $filt = new SimpleFilter($_POST);?>
 
-  <h1>Nous avons trouvé XX citation qui correspondent à vos criteres : </h1>
+  <h1>Nous avons trouvé <?php echo count($citMan->getAllCitationsThatMatchFilter($filt))  ?> citation qui correspondent à vos criteres : </h1>
   <table>
   	<tr><th>Nom de l'enseignant</th><th>Libellé</th><th>Date</th><th>Moyenne des notes</th>
   	<?php
       $filt = new SimpleFilter($_POST);
-  		foreach ($citMan->getAllCitations() as $citation){
-        if ($filt->matchFilter($citation))
+  		foreach ($citMan->getAllCitationsThatMatchFilter($filt) as $citation){
   			      $NumPersonne = $citation->getPerNum();
   						$NumCitation = $citation->getCitNum();
   						$nomPersonne = $perManager->getPers($NumPersonne)->getNom();
@@ -35,7 +37,7 @@ if (!$isSearch){
             	</td><td><?php echo $citation -> getCitLib();?>
             	</td><td><?php echo getFrenchDate($citation -> getDate());?>
             	</td><td><?php echo $note;?></td></tr>
-            <?php } ?>
+            <?php  } ?>
     </table>
 
 <?php } ?>

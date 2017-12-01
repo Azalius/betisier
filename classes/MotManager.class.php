@@ -3,6 +3,7 @@ class MotManager{
   private $bd;
   private $allBadWord;
   public function __construct($bede){
+    // Tout les mots sont chargés a la création du manager. Il y à un unique SELECT
     $this->db = $bede;
     $this->allBadWord = array();
 		$sql = 'SELECT * from mot';

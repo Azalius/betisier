@@ -5,6 +5,16 @@ class CitationsManager{
 			$this->db=$db;
 		}
 
+	public function getAllCitationsThatMatchFilter($filter){
+		$listeCitations = array();
+		foreach ($this->getAllCitations() as $citation){
+			if ($filter->matchFilter($citation)){
+				$listeCitations[] = $citation;
+			}
+		}
+		return $listeCitations;
+	}
+
 	public function getAllCitations() {
 		$listeCitations = array();
 		$sql = 'SELECT per_num,cit_libelle,cit_date,cit_valide,cit_num FROM citation
