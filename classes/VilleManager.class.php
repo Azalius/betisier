@@ -6,6 +6,23 @@ class VilleManager{
 			$this->db = $bede;
 		}
 
+	public function modifierVille($id, $nom){
+		$sql = 'UPDATE ville SET vil_nom = "'.$nom.'" WHERE vil_num = '.$id;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$requete->closeCursor();
+	}
+
+	public function getVille($id){
+		$sql = 'SELECT vil_num, vil_nom FROM ville WHERE vil_num = '.$id;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$ville = $requete->fetch(PDO::FETCH_OBJ);
+		$ville = new Ville($ville);
+		$requete->closeCursor();
+		return $ville;
+	}
+
 	public function getAllVille() {
 		$listeVille = array();
 		$sql = 'SELECT vil_num, vil_nom FROM ville';
