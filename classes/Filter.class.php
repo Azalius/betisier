@@ -38,8 +38,8 @@ class SimpleFilter implements Filter {
     public function getDate(){
       return $this->date;
     }
-    public function getCond(){
-      return $this->date;
+    public function setCond($valeur){
+      $this->condition = $valeur;
     }
     public function getNom(){
       return $this->nom;
@@ -57,24 +57,33 @@ class SimpleFilter implements Filter {
       $this->note = $note;
     }
     public function matchFilter($citation){
-      $isOk = True;
+      $nbFieldOk = 0; // nombre de champs valide
+      $nbField = 0; // nombre de champs demandé par l'utilisateur
       if ($this->note != $this->vide){
-        if ($this->noteMan->getMoyNotes($citation->getCitNum()) != $this->note){
-          $isOk = False;
+        if ($this->noteMan->getMoyNotes($citation->getCitNum()) == $this->note){
+          $nbFieldOk++;
         }
+        $nbField++;
       }
      if ($this->date != $this->vide){
-        if ($citation->getDate() != $this->date){
-          $isOk = False;
+        if ($citation->getDate() == $this->date){
+          $nbFieldOk++;
         }
+        $nbField++;
       }
       if ($this->nom != $this->vide){
         $nomPers = $this->persMan->getPers($citation->getPerNum())->getNom();
-        if (strtolower($nomPers) != $this->nom){
-          $isOk = False;
+        if (strtolower($nomPers) == $this->nom){
+          $nbFieldOk++;
         }
+        $nbField++;
       }
-      return $isOk;
+      if ($this->condition == "or"){
+        return $nbFieldOk != 0;
+      }
+      else{
+        return $nbField == $nbFieldOk;
+      }
     }
 }
 ?>

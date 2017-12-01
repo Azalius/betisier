@@ -12,8 +12,8 @@ if (!$isSearch){
   Nom de l'Enseignant :  <input type="text" name="nom"  id="nom"><br>
   Date : <input type="date" name="date"  id="date"><br>
   Note obtenue <input type="text" name="note"  id="note"><br>
-  <input type="radio" name="condition" value="atleast">Au moins une des conditions<br>
-  <input type="radio" name="condition" value="all">Toutes les conditions<br>
+  <input type="radio" name="condition" value="or" checked="checked">Au moins une des conditions<br>
+  <input type="radio" name="condition" value="and">Toutes les conditions<br>
   <input type="submit" value="Rechercher"/>
 </form>
 
