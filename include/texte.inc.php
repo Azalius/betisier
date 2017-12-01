@@ -98,7 +98,7 @@ case 10:
 
 case 11:
 	if ($_SESSION['user']!=''){
-			// include("pages/modifierVille.inc.php");
+		 include("pages/modifierVille.inc.php");
 		}else{
 			include_once('pages/accueil.inc.php');
 		}
