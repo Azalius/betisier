@@ -51,6 +51,7 @@
 						echo 'Mail: <input type="text" name="mail"  id="mail" value = "'.$pers->getMail().'"><br>';
 						echo 'Login: <input type="text" name="loginpers"  id="loginpers" value = "'.$pers->getLog().'"><br>';
 						echo 'Mot de passe: <input type="password" name="password"  id="password"><br>';
+						echo '<input type="checkbox" name="modifpwd" value="modifpwd">Modifier le mot de passe<br>';
 						echo '<input type="submit" value="Valider"/>';
 					echo '</form>';
 				}

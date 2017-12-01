@@ -144,22 +144,26 @@ class PersonneManager{
 		$this->finModifPersonne();
 	}
 	private function finModifPersonne(){
-		print_r($_SESSION);
 		$sql = 'UPDATE personne SET per_nom = "'
 		.$_SESSION["nom"].'", per_prenom = "'
 		.$_SESSION["prenom"].'", per_tel = "'
 		.$_SESSION["telephone"].'", per_mail = "'
 		.$_SESSION["mail"].'", per_login = "'
-		.$_SESSION["loginpers"].'", per_pwd = "'
-		.toPassword($_SESSION["password"]).'"'
-		.' WHERE per_num = '.$_SESSION["id"];
+		.$_SESSION["loginpers"].'"';
+		if (!empty($_SESSION["modifpwd"]) && $_SESSION["modifpwd"] == "modifpwd"){
+			$sql=$sql.', per_pwd = "'.toPassword($_SESSION["password"]).'"';
+		}
+		$sql=$sql.' WHERE per_num = '.$_SESSION["id"];
+		print_r($sql);
 		$requete = $this->db->prepare($sql);
     $requete->execute();
     $requete->closeCursor();
 	}
 	public function delPers($id){
 /*
-	Supprimer toutes les citations avec ?
+	Supprimer toutes les citations / vote avec ?
+	Afficher ce qui va etre supprimier?
+	Demander une confirmation?
 		if ($this->isEtu($id)){
 			$sql = 'DELETE FROM etudiant WHERE per_num = '.$id;
 		}
