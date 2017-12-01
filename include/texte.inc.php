@@ -61,8 +61,7 @@ case 8:
 
 //
 case 9:
-	// inclure ici la page ....
-    break;
+
 case 10:
 	// inclure ici la page....
     break;
@@ -75,7 +74,7 @@ case 12:
 	// inclure ici la page...
     break;
 case 13:
-	include("pages/rechercherCitation.inc.php");
+		include("pages/rechercherCitation.inc.php");
 		break;
 case 14:
 		include("pages/connexion.inc.php");

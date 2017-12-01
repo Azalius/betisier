@@ -7,6 +7,7 @@ class Personne{
   private $tel;
   private $mdp;
   private $log;
+  private $admin;
 
   public function __construct($valeurs = array()) {
     	if(!empty($valeurs)){
@@ -23,6 +24,7 @@ class Personne{
           case 'per_tel' : $this->setTel($valeur);break;
           case 'per_login' : $this->setLog($valeur);break;
           case 'per_pwd' : $this->setMdp($valeur);break;
+          case 'per_admin' : $this->setAdmin($valeur);break;
 				}
 			}
 		}
@@ -56,6 +58,9 @@ class Personne{
     public function setMdp($num){
       $this->mdp = $num;
     }
+    public function setAdmin($num){
+      $this->admin = $num;
+    }
     public function getNom(){
       return $this->nom;
     }
@@ -76,6 +81,9 @@ class Personne{
     }
     public function getMdp(){
       return $this->mdp;
+    }
+    public function isAdmin(){
+      return $this->admin;
     }
 }
 class Etudiant extends Personne{
