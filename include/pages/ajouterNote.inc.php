@@ -28,7 +28,7 @@ if (empty($_POST['note']) && !empty($_GET['citation']) && $perManager->isEtu($pe
   Votre note a bien été enregistrée.<br>
   Vous allez être redirigé dans <?php echo $timer; ?> secondes.<?php
 } else {
-    echo "Vous n'auriez pas dû arriver ici. Merci de réessayer.";
+    header("Refresh: 0;url='index.php?page=0'");
 }
 
 ?>

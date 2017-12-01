@@ -16,7 +16,11 @@ case 0:
 	break;
 case 1:
 	// inclure ici la page insertion nouvelle personne
-	include("pages/ajouterPersonne.inc.php");
+	if ($_SESSION['user']!=''){
+		include("pages/ajouterPersonne.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
     break;
 
 case 2:
@@ -25,18 +29,30 @@ case 2:
     break;
 case 3:
 	// inclure ici la page modification des personnes
-	include("pages/ModifierPersonne.inc.php");
+	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
+		include("pages/ModifierPersonne.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
     break;
 case 4:
 	// inclure ici la page suppression personnes
-	include_once('pages/supprimerPersonne.inc.php');
-    break;
+	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
+		include_once("pages/supprimerPersonne.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
+  break;
 //
 // Citations
 //
 case 5:
 	// inclure ici la page ajouter citations
-    include("pages/ajouterCitation.inc.php");
+	if ($_SESSION['user']!=''){
+		include("pages/ajouterCitation.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
     break;
 
 case 6:
@@ -49,7 +65,11 @@ case 6:
 
 case 7:
 	// inclure ici la page ajouter ville
-	include("pages/ajouterVille.inc.php");
+	if ($_SESSION['user']!=''){
+		include("pages/ajouterVille.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
     break;
 
 case 8:
@@ -61,20 +81,43 @@ case 8:
 
 //
 case 9:
-
+	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
+		//include("pages/validerCitation.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
+		break;
 case 10:
 	// inclure ici la page....
+	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
+		//include("pages/supprimerCitation.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
     break;
 
 case 11:
-	// inclure ici la page...
+	if ($_SESSION['user']!=''){
+			// include("pages/modifierVille.inc.php");
+		}else{
+			include_once('pages/accueil.inc.php');
+		}
     break;
 
 case 12:
 	// inclure ici la page...
+	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
+		//include("pages/supprimerVille.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
     break;
 case 13:
+	if ($_SESSION['user']!=''){
 		include("pages/rechercherCitation.inc.php");
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
 		break;
 case 14:
 		include("pages/connexion.inc.php");
