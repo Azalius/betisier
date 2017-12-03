@@ -19,14 +19,15 @@
 	}}?></tr>
 	<?php
 		foreach ($citations as $citation){?>
-			<?php $NumPersonne = $citation->getPerNum();
+			<?php 		$NumPersonne = $citation->getPerNum();
 						$NumCitation = $citation->getCitNum();
+						if ($NumPersonne != ''){
 						$nomPersonne = $perManager->getPers($NumPersonne)->getNom();
 						$prePersonne = $perManager->getPers($NumPersonne)->getPre();
+						}
 						$note = $noteManager->getMoyNotes($NumCitation);
-						$note=bcdiv($note, 1, 2);
 			 ?>
-	<tr><td><?php echo $prePersonne." ".$nomPersonne?>
+	<tr><td><?php if ($NumPersonne != ''){ echo $prePersonne." ".$nomPersonne; }?>
 	</td><td><?php echo $citation -> getCitLib();?>
 	</td><td><?php echo getFrenchDate($citation -> getDate());?>
 	</td><td><?php echo $note;?>
