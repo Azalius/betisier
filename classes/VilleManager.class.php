@@ -56,7 +56,7 @@ class VilleManager{
     $requete = $this->db->prepare($sql);
     $requete->execute();
     $requete->closeCursor();
-
+}
 	public function supprimerVilleFromNum($num){
 		$sql = "DELETE FROM ville WHERE vil_num=".$num;
 		$requete = $this->db->prepare($sql);
