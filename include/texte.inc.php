@@ -82,7 +82,7 @@ case 8:
 //
 case 9:
 	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
-		//include("pages/validerCitation.inc.php");
+		include("pages/validerCitation.inc.php");
 	}else{
 		include_once('pages/accueil.inc.php');
 	}

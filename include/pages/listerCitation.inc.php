@@ -5,8 +5,10 @@
 	$perManager = new PersonneManager ($pdo);
 	$noteManager = new NoteManager ($pdo);
 	$citations = $citManager -> getAllCitations();
-?>
 
+	if (empty($_GET['NumCitation'])){
+
+?>
 <p>Actuellement
 <?php echo $citManager->nbCitations() ?>
  citations sont enregistrées.
@@ -42,3 +44,7 @@
 	<?php }?>
 	</table>
 	<br>
+<?php } else {
+	$citation=$citManager->getCitationFromNum($_GET['NumCitation']);
+	
+}
