@@ -95,8 +95,13 @@ class CitationsManager{
 		$requete->execute();
 		$requete->closeCursor();
 	}
-	public function supprimerCitation($id){
-		$sql = "DELETE FROM citation WHERE cit_num=".$id;
+	public function supprimerCitation($idCit, $idPers){
+		$sql = "DELETE FROM vote WHERE cit_num=".$idCit.' OR per_num = '.$idPers;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$requete->closeCursor();
+
+		$sql = "DELETE FROM citation WHERE cit_num=".$idCit;
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$requete->closeCursor();

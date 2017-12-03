@@ -160,10 +160,10 @@ class PersonneManager{
     $requete->closeCursor();
 	}
 	public function delPers($id){
-		$citMan = new CitationManager($this->db);
+		$citMan = new CitationsManager($this->db);
 		foreach ($citMan->getAllCitations() as $citation){
 			if ($citation->getPerNum() == $id){
-				$citMan->supprimerCitation($citation->getCitNum());
+				$citMan->supprimerCitation($citation->getCitNum(), $id);
 			}
 		}
 		if ($this->isEtu($id)){
