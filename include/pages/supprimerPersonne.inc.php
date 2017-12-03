@@ -9,7 +9,7 @@
  ?>
 
 	<h1>Supprimer des personnes : </h1>
-	Attention : supprimer une personne suprimmera toutes ces citations et ses votes
+	Attention : supprimer une personne suprimera toutes ces citations et ses votes
 	<p>
 		Actuellement
 		<?php echo $persMan->nbPers(); ?>
