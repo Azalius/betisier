@@ -20,13 +20,19 @@
   	<tr>
   		<td><?php echo $ville->getNum();?></td>
   		<td><?php echo $ville->getNom();?></td>
-      <td><a href="index.php?page=14&idVille=<?php echo $numVille?>"><img class='icone' src='image/erreur.png' alt='Supprimer ville'></a></td>
+      <td><a href="index.php?page=12&idVille=<?php echo $ville->getNum();?>"><img class='icone' src='image/erreur.png' alt='Supprimer ville'></a></td>
   	</tr>
   	<?php }?>
 
   </table>
   <br />
 <?php } else {
-  
+  $vilManager->supprimerVilleFromNum($_GET['idVille']);
+  $timer=2;
+  $page='index.php?page=0';
+  header("Refresh: $timer;url=$page");
+  ?>
+  La ville a bien été supprimée.<br>
+  Vous allez être redirigé dans <?php echo $timer; ?> secondes. <?php
 }
 ?>
