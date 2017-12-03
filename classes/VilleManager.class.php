@@ -49,12 +49,20 @@ class VilleManager{
     $requete->execute();
     $requete->closeCursor();
 	}
+<<<<<<< HEAD
 	public function supprimerVille($id){
 		$sql = 'DELETE FROM ville WHERE id_ville ='.$id;
 		print_r($sql);
     $requete = $this->db->prepare($sql);
     $requete->execute();
     $requete->closeCursor();
+=======
+	public function supprimerVilleFromNum($num){
+		$sql = "DELETE FROM ville WHERE vil_num=".$num;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$requete->closeCursor();
+>>>>>>> 0e4e90263103a1423eacaaf9fc717454b87ed630
 	}
 }
 ?>

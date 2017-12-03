@@ -32,7 +32,7 @@
 <form action="index.php?page=11&ville=<?php echo($_GET["ville"]); ?>" id="insert" method="post">
 	Nom ville : <input type="text" name="nom"  id="nom" size="10"
 	value =" <?php echo($villeMan->getVille($_GET["ville"])->getNom()); ?>">
-	<input type="submit" value="Ajouter"/>
+	<input type="submit" value="Modifier"/>
 </form>
 <?php } else { ?>
 	<?php $villeMan->modifierVille($_GET["ville"], $_POST["nom"]) ?>
