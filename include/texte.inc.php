@@ -1,6 +1,8 @@
 <div id="texte">
 <?php
 if (!empty($_GET["page"])){
+	$pdo = new Mypdo();
+	$persMan = new PersonneManager($pdo);
 	$page=$_GET["page"];}
 	else
 	{$page=0;
@@ -126,11 +128,18 @@ case 15:
 		include("pages/deconnexion.inc.php");
 		break;
 case 16:
-		include("pages/ajouterNote.inc.php");
+		if ($_SESSION['user']!=''){
+			include("pages/ajouterNote.inc.php");
+		}else{
+			include_once('pages/accueil.inc.php');
+		}
 		break;
 case 17:
+	if ($_SESSION['user']!=''){
 		include("pages/supprimerNote.inc.php");
-		break;
+	}else{
+		include_once('pages/accueil.inc.php');
+	}
 
 default : 	include_once('pages/accueil.inc.php');
 }
