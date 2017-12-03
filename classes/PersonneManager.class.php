@@ -160,10 +160,12 @@ class PersonneManager{
     $requete->closeCursor();
 	}
 	public function delPers($id){
-/*
-	Supprimer toutes les citations / vote avec ?
-	Afficher ce qui va etre supprimier?
-	Demander une confirmation?
+		$citMan = new CitationManager($this->db);
+		foreach ($citMan->getAllCitations() as $citation){
+			if ($citation->getPerNum() == $id){
+				$citMan->supprimerCitation($citation->getCitNum());
+			}
+		}
 		if ($this->isEtu($id)){
 			$sql = 'DELETE FROM etudiant WHERE per_num = '.$id;
 		}
@@ -173,12 +175,13 @@ class PersonneManager{
 		$requete = $this->db->prepare($sql);
     $requete->execute();
     $requete->closeCursor();
-		$sql = 'DELETE FROM salarie WHERE per_num = '.$id;
+
+		$sql = 'DELETE FROM personne WHERE per_num = '.$id;
 		$requete = $this->db->prepare($sql);
     $requete->execute();
     $requete->closeCursor();
 
-*/
+
 	}
 }
 ?>
