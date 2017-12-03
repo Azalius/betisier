@@ -55,5 +55,15 @@ class VilleManager{
 		$requete->execute();
 		$requete->closeCursor();
 	}
+	public function liee($ville){
+			$sql = "SELECT COUNT(dep_num) AS v FROM departement WHERE vil_num = :numVille";
+			$requete = $this->db->prepare($sql);
+			$requete->bindValue(':numVille', $ville->getNum());
+			$requete->execute();
+			$villeAssocie = $requete->fetch(PDO::FETCH_OBJ);
+			$villeAssocie = $villeAssocie->v;
+			$requete->closeCursor();
+			return $villeAssocie;
+		}
 }
 ?>

@@ -27,6 +27,7 @@
   </table>
   <br />
 <?php } else {
+  if ($vilManager->liee($vilManager->getVille($_GET['idVille'])) == 0){
   $vilManager->supprimerVilleFromNum($_GET['idVille']);
   $timer=2;
   $page='index.php?page=0';
@@ -34,5 +35,7 @@
   ?>
   La ville a bien été supprimée.<br>
   Vous allez être redirigé dans <?php echo $timer; ?> secondes. <?php
-}
+}else{
+echo "La ville est encore liée à des départements. Il est donc impossible de la supprimer.";
+}}
 ?>
