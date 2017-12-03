@@ -6,9 +6,10 @@ $citManager = new CitationsManager ($pdo);
 $perManager = new PersonneManager ($pdo);
 $citations = $citManager -> getCitationsNonValides();
 
+if (empty($_GET['citation'])){
  ?>
  <p>Actuellement
- <?php echo $citManager->nbCitations() ?>
+ <?php echo $citManager->nbCitationsNonValides() ?>
   citations sont en attente de validation.
 
   <table>
@@ -29,3 +30,7 @@ $citations = $citManager -> getCitationsNonValides();
     ?></td></tr>
   	<?php }?>
   	</table>
+  <?php } else {
+    $citManager->validerCitationFromNum($_GET['citation']);
+    echo "La citation a bien été validée.";
+  }

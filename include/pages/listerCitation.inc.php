@@ -6,7 +6,6 @@
 	$noteManager = new NoteManager ($pdo);
 	$citations = $citManager -> getAllCitations();
 
-	if (empty($_GET['NumCitation'])){
 
 ?>
 <p>Actuellement
@@ -44,7 +43,3 @@
 	<?php }?>
 	</table>
 	<br>
-<?php } else {
-	$citation=$citManager->getCitationFromNum($_GET['NumCitation']);
-	
-}

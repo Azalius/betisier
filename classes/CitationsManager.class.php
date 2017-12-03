@@ -58,6 +58,16 @@ class CitationsManager{
 		$requete->closeCursor();
 		return $nbcitation->total;
 	}
+	public function nbCitationsNonValides() {
+		$sql = 'SELECT COUNT(cit_num) as total FROM citation
+            WHERE cit_valide=0
+            ORDER BY cit_num';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$nbcitation = $requete -> fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+		return $nbcitation->total;
+	}
 	public function insertCitation($idProf, $date, $citation){
 		$pdo=new Mypdo();
 		$persMan = new PersonneManager($pdo);
@@ -74,11 +84,16 @@ class CitationsManager{
 		$requete->execute();
 		$cit = $requete -> fetch(PDO::FETCH_OBJ);
 		$citation = new Citation($cit);
+		$requete->closeCursor();
 		return $citation;
 	}
 
 	public function validerCitationFromNum($num){
-		$sql = 'UPDATE citation SET cit_valide'
+		$date=date("Y-m-d");
+		$sql = "UPDATE citation SET cit_valide=1, cit_date_valide='".$date."' WHERE cit_num=".$num;
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$requete->closeCursor();
 	}
 }
 ?>
