@@ -76,5 +76,9 @@ class CitationsManager{
 		$citation = new Citation($cit);
 		return $citation;
 	}
+
+	public function validerCitationFromNum($num){
+		$sql = 'UPDATE citation SET cit_valide'
+	}
 }
 ?>
