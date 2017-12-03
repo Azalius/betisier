@@ -27,6 +27,7 @@
   </table>
   <br />
 <?php } else {
-  
+  $vilManager->supprimerVille($_GET["idVille"]);
+  echo '<h2>La ville à bien été supprimée</h2>';
 }
 ?>
