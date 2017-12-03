@@ -30,7 +30,7 @@ case 2:
 case 3:
 	// inclure ici la page modification des personnes
 	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
-		include("pages/ModifierPersonne.inc.php");
+		include("pages/modifierPersonne.inc.php");
 	}else{
 		include_once('pages/accueil.inc.php');
 	}
@@ -90,7 +90,7 @@ case 9:
 case 10:
 	// inclure ici la page....
 	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
-		//include("pages/supprimerCitation.inc.php");
+		include("pages/supprimerCitation.inc.php");
 	}else{
 		include_once('pages/accueil.inc.php');
 	}
@@ -107,7 +107,7 @@ case 11:
 case 12:
 	// inclure ici la page...
 	if ($persMan->getPersFromLogin($_SESSION['user'])->isAdmin()){
-		//include("pages/supprimerVille.inc.php");
+		include("pages/supprimerVille.inc.php");
 	}else{
 		include_once('pages/accueil.inc.php');
 	}

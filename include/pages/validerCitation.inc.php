@@ -34,3 +34,4 @@ if (empty($_GET['citation'])){
     $citManager->validerCitationFromNum($_GET['citation']);
     echo "La citation a bien été validée.";
   }
+?>
